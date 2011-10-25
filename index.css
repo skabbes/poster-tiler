@@ -1,0 +1,12 @@
+#container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#canvas{
+    border: 1px solid black;
+}
+
+#canvas.drag{
+    border: 10px solid green;
+}

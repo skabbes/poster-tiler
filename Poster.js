@@ -5,13 +5,17 @@ function Poster(w, h){
     this._images = [];
 }
 
-Poster.prototype.addImages= function(aMin, aMax){
+Poster.prototype.clear = function(){
+    this._images = [];
+};
+
+Poster.prototype.addImages= function(rectFactory){
     var yPos = 0;
     var rows = [];
     var height = this._height;
 
     while( yPos < height){
-        var row = this._addRow(yPos, aMin, aMax);
+        var row = this._addRow(yPos, rectFactory);
         rows.push(row);
 
         yPos = row.map(function(image){
@@ -67,15 +71,15 @@ Poster.prototype.addImages= function(aMin, aMax){
     return totalImages;
 };
 
-Poster.prototype._addRow= function(yPos, aMin, aMax){
+Poster.prototype.setImage = function(img){
+    this._img = img;
+};
+
+Poster.prototype._addRow= function(yPos, rectFactory){
     var xPos = 0;
     var row = [];
     while( xPos < this._width ){
-
-        var r = new Rect(this._iWidth, this._iHeight);
-        var range = aMax - aMin;
-        r.rotate( (Math.random() * range) + aMin );
-
+        var r = rectFactory(xPos, yPos);
         if( xPos === 0 ){
             var offsetX = -r.leftBound();
         } else {
@@ -106,13 +110,10 @@ Poster.prototype._addRow= function(yPos, aMin, aMax){
     return row;
 };
 
-Poster.prototype.setImageSize = function(w, h){
-    this._iWidth = w;
-    this._iHeight = h;
-};
+Poster.prototype.draw = function(canvas, heightCallback){
 
-Poster.prototype.draw = function(canvas, img, heightCallback){
-    //if( !img ) return;
+    var img = this._img;
+
     if( ! heightCallback ){
         heightCallback = function(a, b){
             return Math.random() - .5;
@@ -183,6 +184,11 @@ Poster.prototype.draw = function(canvas, img, heightCallback){
     }, 1000);
     */
 
+    images.forEach(function(im){
+        im.scale(scale).drawFrame(ctx);
+    });
+
+    /*
     var i = 0;
     var drawMe = setInterval(function(){
         var image = images[i++];
@@ -191,6 +197,7 @@ Poster.prototype.draw = function(canvas, img, heightCallback){
             clearInterval(drawMe);
         }
     }, 10);
+    */
 
     var drawScale = img.width / this._width;
 

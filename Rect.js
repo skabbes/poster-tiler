@@ -81,13 +81,14 @@ Rect.prototype.centroid = function(){
     var points = this.points();
     var tx = 0;
     var ty = 0;
+
     points.forEach(function(point){
         tx += point.x;
         ty += point.y;
     });
 
-    tx = tx / 4;
-    ty = ty / 4;
+    tx = tx / points.length;
+    ty = ty / points.length;
 
     return {x: tx, y:ty};
 };
@@ -167,26 +168,29 @@ Rect.prototype.draw = function(ctx, img, w, h){
         ctx.drawImage(img, 0, 0, w, h);
     }
 
-    /*
-    ctx.strokeStyle = "red";
-    ctx.beginPath();
-    var outerRect = this.boundingBox().points();
-    outerRect.forEach(function(point){
-        ctx.lineTo( point.x,  point.y );
-    });
-    ctx.closePath();
-    ctx.stroke();
+    ctx.restore();
+};
 
-    ctx.strokeStyle = "blue";
+Rect.prototype.drawFrame = function(ctx){
+    var points = this.points();
+    ctx.save();
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "white";
+    ctx.lineWidth= 2;
+
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "black";
+
+
     ctx.beginPath();
-    var innerRect = this.innerBox().points();
-    innerRect.forEach(function(point){
+    points.forEach(function(point){
         ctx.lineTo( point.x, point.y );
     });
     ctx.closePath();
-    ctx.fill();
     ctx.stroke();
-    */
+    ctx.fill();
 
     ctx.restore();
 };

@@ -2,25 +2,27 @@
 <html>
     <head>
         <title>Image Tiler</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="Rect.js"></script>
         <script type="text/javascript" src="Poster.js"></script>
-        <script type="text/javascript" src="Base64.js"></script>
-        <script type="text/javascript" src="Polygon.js"></script>
-        <style type="text/css">
-            * {
-                margin: 0;
-                padding: 0;
-                border: none;
-            }
-            #canvas{
-                border: 1px solid black;
-            }
-        </style>
+        <script type="text/javascript" src="RectFactory.js"></script>
+        <link href="index.css" rel="stylesheet" type="text/css" />
     <head>
 <body>
-    <canvas id="canvas" width="1200" height="600"></canvas>
-    <br />
-    <a href="data:text/plain;base64,SGVsbG8=" id="scriptLink">Download Script</a>
+    <div id="container">
+        <h1>Poster Tiler</h1>
+        <label for="width">width in inches</label><input id="width" type="input" name="input" /> <br />
+        <input id="4x6" type="checkbox" name="4x6" checked="checked" /> <label for="4x6">4x6</label> <br />
+        <input id="4x5_3" type="checkbox" name="4x5.3" /> <label for="4x5.3">4x5.3</label> <br />
+        <input id="3_25x5" type="checkbox" name="3.25x5" /> <label for="3.25x5">3.25x5</label> <br />
+        <input id="5x5" type="checkbox" name="5x5" /> <label for="5x5">5x5</label> <br />
+        <input id="5x7" type="checkbox" name="5x7" /> <label for="5x7">5x7</label> <br />
+        <input id="5x6_5" type="checkbox" name="5x6.5" /> <label for="5x6.5">5x6.5</label> <br />
+
+        <canvas id="canvas" width="1200" height="600"></canvas>
+        <br />
+        <a href="data:text/plain;base64,SGVsbG8=" id="scriptLink">Download Script</a>
+    </div>
 </body>
 </html>
