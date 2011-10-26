@@ -188,7 +188,6 @@ Poster.prototype.draw = function(canvas, heightCallback){
         im.scale(scale).drawFrame(ctx);
     });
 
-    /*
     var i = 0;
     var drawMe = setInterval(function(){
         var image = images[i++];
@@ -197,7 +196,6 @@ Poster.prototype.draw = function(canvas, heightCallback){
             clearInterval(drawMe);
         }
     }, 10);
-    */
 
     var drawScale = img.width / this._width;
 

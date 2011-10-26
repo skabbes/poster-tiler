@@ -136,13 +136,8 @@ function handleFiles(files) {
         var cy = h * res / 2;
 
         var highPoints = [
-            {x: cx, y:cy},
-            {x: cx/2, y:cy/2},
-            {x: cx/2, y:3*cy/2},
-            {x: cx*3/2, y:cy}
+            {x: cx, y:cy}
         ];
-
-        console.log(highPoints);
 
         var script = p.draw(canvas, function(i){
             var p = i.centroid();
